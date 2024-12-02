@@ -6,8 +6,7 @@ data = open(0).readlines()
 safe = 0
 for line in data:
     report = list(map(int, line.split()))
-    if is_safe(report):
-        safe += 1
+    safe += is_safe(report)
 
 print(f"Part 1: {safe}")
 
