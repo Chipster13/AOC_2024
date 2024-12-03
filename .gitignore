@@ -240,3 +240,4 @@ fabric.properties
 
 # Advent of Code
 in.txt
+.idea/**
