@@ -7,7 +7,7 @@ for r in range(len(grid)):
             for dr, dc in dirs:
                 if not (0 <= r + 3*dr < len(grid) and 0 <= c + 3*dc < len(grid[0])):
                     continue
-                if grid[r + dr][c + dc] == 'M' and grid[r +  2 * dr][c + 2 * dc] == 'A' and grid[r + 3 * dr][c + 3 * dc] == 'S':
+                if grid[r + dr][c + dc] == 'M' and grid[r + 2 * dr][c + 2 * dc] == 'A' and grid[r + 3 * dr][c + 3 * dc] == 'S':
                     count += 1
 
 print(f"Part 1: {count}")
