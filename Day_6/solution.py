@@ -12,30 +12,36 @@ if (r, c) == (-1, -1):
     exit(0)
 R = len(grid)
 C = len(grid[0])
+dr, dc = -1, 0
+visited = set()
+while True:
+    visited.add((r, c))
+    if not (0 <= r + dr < R and 0 <= c + dc < C):
+        break
+    if grid[r + dr][c + dc] == '#':
+        dc, dr = -dr, dc
+    else:
+        r += dr
+        c += dc
 
-def check_for_loop(part2 = False):
+
+def check_for_loop() -> bool:
     r, c = find_start(grid)
     dr, dc = -1, 0
     visited = set()
     while True:
-        if part2:
-            if (r, c, dr, dc) in visited:
-                return True
-            visited.add((r, c, dr, dc))
-        else:
-            visited.add((r, c))
+        if (r, c, dr, dc) in visited:
+            return True
+        visited.add((r, c, dr, dc))
         if not(0 <= r + dr < R and 0 <= c + dc < C):
-            if part2:
-                return False
-            else:
-                return visited
+            return False
         if grid[r+dr][c+dc] == '#':
             dc, dr = -dr, dc
         else:
             r += dr
             c += dc
 
-visited = check_for_loop(False)
+check_for_loop()
 print(f"Part 1: {len(visited)}")
 
 count = 0
@@ -43,7 +49,7 @@ for ro in range(R):
     for co in range(C):
         if grid[ro][co] == '.':
             grid[ro][co] = '#'
-            if check_for_loop(True):
+            if check_for_loop():
                 count += 1
             grid[ro][co] = '.'
 
